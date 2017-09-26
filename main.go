@@ -9,6 +9,12 @@ import (
 
 func main() {}
 
+const (
+	exitOK   = 0
+	exitErr  = 1
+	exitUser = 2
+)
+
 // RawData holds all user agents.
 type RawData []string
 
