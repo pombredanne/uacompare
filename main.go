@@ -27,7 +27,7 @@ func loadRawData(path string) (RawData, error) {
 	}
 
 	defer func() {
-		if err := r.Close(); err != nil {
+		if err = r.Close(); err != nil {
 			err = fmt.Errorf("close error: %v", err)
 			log.Fatal(err)
 		}
