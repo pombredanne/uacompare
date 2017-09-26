@@ -1,0 +1,18 @@
+language: go
+
+go:
+    - 1.x
+    - tip
+
+notifications:
+    email: 
+        recipients:
+            - davor.kapsa@gmail.com
+        on_success: never
+        on_failure: always
+
+script:
+    - make test
+
+after_success:
+    - make codecov
