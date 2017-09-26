@@ -15,6 +15,10 @@ const (
 	exitUser = 2
 )
 
+func run(path string) int {
+	return exitOK
+}
+
 // RawData holds all user agents.
 type RawData []string
 
