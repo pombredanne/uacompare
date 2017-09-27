@@ -23,14 +23,14 @@ func newLogger(debug bool, stdout, stderr io.Writer) *Logger {
 		stderr = os.Stderr
 	}
 
-	l := Logger{
+	lgr := Logger{
 		il: log.New(stdout, "", 0),
 		el: log.New(stderr, "", 0),
 	}
 
 	if debug {
-		l.dl = log.New(stdout, "", 0)
+		lgr.dl = log.New(stdout, "", 0)
 	}
 
-	return &l
+	return &lgr
 }
