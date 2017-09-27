@@ -25,6 +25,18 @@ func testSetupLogger(debug bool) (*Logger, *bytes.Buffer, *bytes.Buffer) {
 	return lgr, bufOut, bufErr
 }
 
+func TestLoggerFalseDebug(t *testing.T) {
+	lgr, bo, be := testSetupLogger(false)
+	want := "message"
+	lgr.Debug(want)
+	if got := bo.String(); got != "" {
+		t.Errorf("stdout: got %q, want empty", got)
+	}
+	if got := be.String(); got != "" {
+		t.Errorf("stderr: got %q, want empty", got)
+	}
+}
+
 func TestLoggerDebug(t *testing.T) {
 	lgr, bo, be := testSetupLogger(true)
 	want := "message"
