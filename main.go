@@ -15,14 +15,23 @@ const (
 	exitUser = 2
 )
 
-func run(path string) int {
+func run(path string, stdout, stderr io.Writer) int {
+	lgr := newLogger(true, stdout, stderr)
+
+	raw, err := loadRawData(path, lgr)
+	if err != nil {
+		lgr.Errorf("load raw data: %v", err)
+	}
+
+	_ = raw
+
 	return exitOK
 }
 
 // RawData holds all user agents.
 type RawData []string
 
-func loadRawData(path string) (RawData, error) {
+func loadRawData(path string, lgr *Logger) (RawData, error) {
 	empty := RawData{}
 
 	r, err := os.Open(path)
@@ -32,8 +41,7 @@ func loadRawData(path string) (RawData, error) {
 
 	defer func() {
 		if err = r.Close(); err != nil {
-			err = fmt.Errorf("close error: %v", err)
-			log.Fatal(err)
+			lgr.Errorf("load raw data close: %v", err)
 		}
 	}()
 
