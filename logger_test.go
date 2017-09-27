@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"strings"
 	"testing"
 )
 
@@ -22,4 +23,17 @@ func testSetup(debug bool) (*Logger, *bytes.Buffer, *bytes.Buffer) {
 	lgr := newLogger(debug, bufOut, bufErr)
 
 	return lgr, bufOut, bufErr
+}
+
+func TestLoggerDebug(t *testing.T) {
+	lgr, bo, be := testSetup(true)
+	want := "message"
+	lgr.Debug(want)
+	got := bo.String()
+	if !strings.HasPrefix(got, want) {
+		t.Errorf("got %q, want %q", got, want)
+	}
+	if be.String() != "" {
+		t.Error("empty stderr")
+	}
 }
