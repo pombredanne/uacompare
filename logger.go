@@ -36,9 +36,22 @@ func newLogger(debug bool, stdout, stderr io.Writer) *Logger {
 }
 
 func printLog(lvl *log.Logger, format string, v ...interface{}) {
+	if lvl == nil {
+		return
+	}
 	if format == "" {
 		lvl.Print(v...)
 		return
 	}
 	lvl.Printf(format, v...)
+}
+
+// Debug prints output to debug log.
+func (lgr *Logger) Debug(v ...interface{}) {
+	printLog(lgr.dl, "", v...)
+}
+
+// Debugf prints formatted output to debug log.
+func (lgr *Logger) Debugf(format string, v ...interface{}) {
+	printLog(lgr.dl, format, v...)
 }
