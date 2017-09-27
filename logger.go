@@ -34,3 +34,11 @@ func newLogger(debug bool, stdout, stderr io.Writer) *Logger {
 
 	return &lgr
 }
+
+func printLog(lvl *log.Logger, format string, v ...interface{}) {
+	if format == "" {
+		lvl.Print(v...)
+		return
+	}
+	lvl.Printf(format, v...)
+}
