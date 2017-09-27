@@ -7,7 +7,9 @@ import (
 	"os"
 )
 
-func main() {}
+func main() {
+	os.Exit(run("", os.Stdout, os.Stderr))
+}
 
 const (
 	exitOK   = 0
