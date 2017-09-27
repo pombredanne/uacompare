@@ -6,9 +6,9 @@ import (
 )
 
 func TestNewLogger(t *testing.T) {
-	l := newLogger(true, nil, nil)
+	lgr := newLogger(true, nil, nil)
 
-	if l.dl == nil {
+	if lgr.dl == nil {
 		t.Error("nil debug")
 	}
 }
@@ -19,7 +19,7 @@ func testSetup(debug bool) (*Logger, *bytes.Buffer, *bytes.Buffer) {
 		bufErr = &bytes.Buffer{}
 	)
 
-	l := newLogger(debug, bufOut, bufErr)
+	lgr := newLogger(debug, bufOut, bufErr)
 
-	return l, bufOut, bufErr
+	return lgr, bufOut, bufErr
 }
