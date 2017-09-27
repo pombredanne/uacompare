@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"strings"
 	"testing"
 )
 
@@ -14,51 +13,41 @@ func TestNewLogger(t *testing.T) {
 	}
 }
 
-func testSetupLogger(debug bool) (*Logger, *bytes.Buffer, *bytes.Buffer) {
+func testSetupLogger(t *testing.T, debug bool) (*Logger, func(string, string)) {
 	var (
-		bufOut = &bytes.Buffer{}
-		bufErr = &bytes.Buffer{}
+		bo = &bytes.Buffer{}
+		be = &bytes.Buffer{}
 	)
 
-	lgr := newLogger(debug, bufOut, bufErr)
+	lgr := newLogger(debug, bo, be)
 
-	return lgr, bufOut, bufErr
+	helper := func(wantOut, wantErr string) {
+		t.Helper()
+		if got := bo.String(); got != wantOut {
+			t.Errorf("stdout: got %q, want %q", got, wantOut)
+		}
+		if got := be.String(); got != wantErr {
+			t.Errorf("stderr: got %q, want %q", got, wantErr)
+		}
+	}
+
+	return lgr, helper
 }
 
 func TestLoggerFalseDebug(t *testing.T) {
-	lgr, bo, be := testSetupLogger(false)
-	want := "message"
-	lgr.Debug(want)
-	if got := bo.String(); got != "" {
-		t.Errorf("stdout: got %q, want empty", got)
-	}
-	if got := be.String(); got != "" {
-		t.Errorf("stderr: got %q, want empty", got)
-	}
+	lgr, check := testSetupLogger(t, false)
+	lgr.Debug("message")
+	check("", "")
 }
 
 func TestLoggerDebug(t *testing.T) {
-	lgr, bo, be := testSetupLogger(true)
-	want := "message"
-	lgr.Debug(want)
-	got := bo.String()
-	if !strings.HasPrefix(got, want) {
-		t.Errorf("got %q, want %q", got, want)
-	}
-	if be.String() != "" {
-		t.Error("empty stderr")
-	}
+	lgr, check := testSetupLogger(t, true)
+	lgr.Debug("message")
+	check("message\n", "")
 }
 
 func TestLoggerDebugf(t *testing.T) {
-	lgr, bo, be := testSetupLogger(true)
-	want := "message 1"
-	lgr.Debugf(want, 1, 2, 3)
-	got := bo.String()
-	if !strings.HasPrefix(got, want) {
-		t.Errorf("got %q, want %q", got, want)
-	}
-	if be.String() != "" {
-		t.Error("empty stderr")
-	}
+	lgr, check := testSetupLogger(t, true)
+	lgr.Debugf("%s-%d-%t", "message", 1, true)
+	check("message-1-true\n", "")
 }
