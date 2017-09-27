@@ -14,7 +14,7 @@ func TestNewLogger(t *testing.T) {
 	}
 }
 
-func testSetup(debug bool) (*Logger, *bytes.Buffer, *bytes.Buffer) {
+func testSetupLogger(debug bool) (*Logger, *bytes.Buffer, *bytes.Buffer) {
 	var (
 		bufOut = &bytes.Buffer{}
 		bufErr = &bytes.Buffer{}
@@ -26,7 +26,7 @@ func testSetup(debug bool) (*Logger, *bytes.Buffer, *bytes.Buffer) {
 }
 
 func TestLoggerDebug(t *testing.T) {
-	lgr, bo, be := testSetup(true)
+	lgr, bo, be := testSetupLogger(true)
 	want := "message"
 	lgr.Debug(want)
 	got := bo.String()
