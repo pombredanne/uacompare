@@ -3,7 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"log"
+	"io"
 	"os"
 )
 
