@@ -4,9 +4,11 @@ import (
 	"testing"
 )
 
+const testRawDataPath = "testdata/testdata.txt"
+
 func TestLoadRawData(t *testing.T) {
 	const path = "testdata/testdata.txt"
-	rd, err := loadRawData(path, new(Logger))
+	rd, err := loadRawData(testRawDataPath, new(Logger))
 	if err != nil {
 		t.Errorf("err: %v", err)
 	}
