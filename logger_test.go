@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"testing"
 )
 
@@ -21,7 +22,11 @@ func testSetupLogger(t *testing.T, debug bool) (*Logger, func(string, string)) {
 
 	lgr := newLogger(debug, bo, be)
 
-	helper := func(wantOut, wantErr string) {
+	return lgr, testLoggerHelper(t, bo, be)
+}
+
+func testLoggerHelper(t *testing.T, bo, be fmt.Stringer) func(string, string) {
+	return func(wantOut, wantErr string) {
 		t.Helper()
 		if got := bo.String(); got != wantOut {
 			t.Errorf("stdout: got %q, want %q", got, wantOut)
@@ -30,8 +35,6 @@ func testSetupLogger(t *testing.T, debug bool) (*Logger, func(string, string)) {
 			t.Errorf("stderr: got %q, want %q", got, wantErr)
 		}
 	}
-
-	return lgr, helper
 }
 
 func TestLoggerFalseDebug(t *testing.T) {
