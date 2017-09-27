@@ -46,6 +46,16 @@ func printLog(lvl *log.Logger, format string, v ...interface{}) {
 	lvl.Printf(format, v...)
 }
 
+// Info prints output to info log.
+func (lgr *Logger) Info(v ...interface{}) {
+	printLog(lgr.il, "", v...)
+}
+
+// Infof prints formatted output to debug log.
+func (lgr *Logger) Infof(format string, v ...interface{}) {
+	printLog(lgr.il, format, v...)
+}
+
 // Debug prints output to debug log.
 func (lgr *Logger) Debug(v ...interface{}) {
 	printLog(lgr.dl, "", v...)
