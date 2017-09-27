@@ -55,3 +55,13 @@ func (lgr *Logger) Debug(v ...interface{}) {
 func (lgr *Logger) Debugf(format string, v ...interface{}) {
 	printLog(lgr.dl, format, v...)
 }
+
+// Error prints output to error log.
+func (lgr *Logger) Error(v ...interface{}) {
+	printLog(lgr.el, "", v...)
+}
+
+// Errorf prints formatted output to error log.
+func (lgr *Logger) Errorf(format string, v ...interface{}) {
+	printLog(lgr.el, format, v...)
+}

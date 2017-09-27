@@ -54,3 +54,15 @@ func TestLoggerDebugf(t *testing.T) {
 	lgr.Debugf("%s-%d-%t", "message", 1, true)
 	check("message-1-true\n", "")
 }
+
+func TestLoggerError(t *testing.T) {
+	lgr, check := testSetupLogger(t, true)
+	lgr.Error("message")
+	check("", "message\n")
+}
+
+func TestLoggerErrorf(t *testing.T) {
+	lgr, check := testSetupLogger(t, true)
+	lgr.Errorf("%s-%d-%t", "message", 1, true)
+	check("", "message-1-true\n")
+}
