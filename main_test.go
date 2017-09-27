@@ -16,3 +16,13 @@ func TestLoadRawData(t *testing.T) {
 		t.Error("empty data")
 	}
 }
+
+func TestRun(t *testing.T) {
+	if got := run(testRawDataPath, nil, nil); got != exitOK {
+		t.Errorf("run(%q, ...) got %v, want %v", testRawDataPath, got, exitOK)
+	}
+	const invalidPath = "invalid-path"
+	if got := run(invalidPath, nil, nil); got != exitErr {
+		t.Errorf("run(%q, ...) got %v, want %v", invalidPath, got, exitErr)
+	}
+}

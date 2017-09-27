@@ -21,6 +21,7 @@ func run(path string, stdout, stderr io.Writer) int {
 	raw, err := loadRawData(path, lgr)
 	if err != nil {
 		lgr.Errorf("load raw data: %v", err)
+		return exitErr
 	}
 
 	_ = raw
