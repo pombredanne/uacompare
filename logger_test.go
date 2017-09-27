@@ -49,3 +49,16 @@ func TestLoggerDebug(t *testing.T) {
 		t.Error("empty stderr")
 	}
 }
+
+func TestLoggerDebugf(t *testing.T) {
+	lgr, bo, be := testSetupLogger(true)
+	want := "message 1"
+	lgr.Debugf(want, 1, 2, 3)
+	got := bo.String()
+	if !strings.HasPrefix(got, want) {
+		t.Errorf("got %q, want %q", got, want)
+	}
+	if be.String() != "" {
+		t.Error("empty stderr")
+	}
+}
