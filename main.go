@@ -1,8 +1,6 @@
 package main
 
 import (
-	"bufio"
-	"fmt"
 	"io"
 	"os"
 )
@@ -20,48 +18,14 @@ const (
 func run(path string, stdout, stderr io.Writer) int {
 	lgr := newLogger(true, stdout, stderr)
 
-	raw, err := loadRawData(path, lgr)
+	var data Data
+	err := loadData(lgr, path, &data)
 	if err != nil {
 		lgr.Errorf("load raw data: %v", err)
 		return exitErr
 	}
 
-	_ = raw
+	_ = data
 
 	return exitOK
-}
-
-// RawData holds all user agents.
-type RawData []string
-
-func loadRawData(path string, lgr *Logger) (RawData, error) {
-	empty := RawData{}
-
-	r, err := os.Open(path)
-	if err != nil {
-		return empty, err
-	}
-
-	defer func() {
-		if err = r.Close(); err != nil {
-			lgr.Errorf("load raw data close: %v", err)
-		}
-	}()
-
-	s := bufio.NewScanner(r)
-
-	var rd RawData
-	var t string
-	for s.Scan() {
-		t = s.Text()
-		if t == "" {
-			continue
-		}
-		rd = append(rd, t)
-	}
-	if err = s.Err(); err != nil {
-		err = fmt.Errorf("scan: %v", s.Err())
-		return empty, err
-	}
-	return rd, nil
 }
