@@ -1,12 +1,15 @@
 package main
 
 import (
+	"flag"
 	"io"
 	"os"
 )
 
 func main() {
-	os.Exit(run("", os.Stdout, os.Stderr))
+	d := flag.String("data", "", "path to data file")
+	v := flag.Bool("v", false, "verbose output")
+	os.Exit(run(*d, *v, os.Stdout, os.Stderr))
 }
 
 const (
@@ -15,8 +18,8 @@ const (
 	exitUser = 2
 )
 
-func run(path string, stdout, stderr io.Writer) int {
-	lgr := newLogger(true, stdout, stderr)
+func run(path string, verbose bool, stdout, stderr io.Writer) int {
+	lgr := newLogger(verbose, stdout, stderr)
 
 	var data Data
 	err := loadData(lgr, path, &data)
