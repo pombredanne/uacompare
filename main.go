@@ -9,6 +9,7 @@ import (
 func main() {
 	d := flag.String("data", "", "path to data file")
 	v := flag.Bool("v", false, "verbose output")
+	flag.Parse()
 	os.Exit(run(*d, *v, os.Stdout, os.Stderr))
 }
 
@@ -28,7 +29,16 @@ func run(path string, verbose bool, stdout, stderr io.Writer) int {
 		return exitErr
 	}
 
-	_ = data
+	max := len(data)
+
+	xojoc := newXojocPackage(max)
+
+	for _, ua := range data {
+		lgr.Infof("--- %q", ua)
+		v := xojoc.Parse(ua)
+		lgr.Debugf("%v", v)
+	}
+	lgr.Infof("\n\n%v", xojoc.Result())
 
 	return exitOK
 }
