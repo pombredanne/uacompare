@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"io"
 	"os"
 )
@@ -34,11 +35,20 @@ func run(path string, verbose bool, stdout, stderr io.Writer) int {
 	xojoc := newUAPackage(xojocPath, max)
 
 	for _, ua := range data {
-		lgr.Infof("--- %q", ua)
-		v := xojocParse(xojoc, ua)
-		lgr.Debugf("%v", v)
+		lgr.Debugf("\n%s", ua)
+		r := xojocParse(xojoc, ua)
+		lgr.Debugf("%s", showResult(xojoc, r))
 	}
 	lgr.Infof("\n\n%v", xojoc.Total())
 
 	return exitOK
+}
+
+func showResult(pkg *uaPackage, r *uaResult) string {
+	valid := "-"
+	if r.valid {
+		valid = "+"
+	}
+	s := fmt.Sprintf("%s %s: %+v\n", valid, pkg.path, r)
+	return s
 }

@@ -30,3 +30,19 @@ func (pkg *uaPackage) Total() string {
 func (pkg *uaPackage) Inc() {
 	pkg.ok++
 }
+
+type uaResult struct {
+	valid          bool
+	os             string
+	osVersion      string
+	browser        string
+	browserVersion string
+	mobile         bool
+	tablet         bool
+}
+
+func (r *uaResult) String() string {
+	s := fmt.Sprintf("os: %s(%s) br: %s(%s) m:%t t:%t",
+		r.os, r.osVersion, r.browser, r.browserVersion, r.mobile, r.tablet)
+	return s
+}
