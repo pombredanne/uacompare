@@ -31,14 +31,14 @@ func run(path string, verbose bool, stdout, stderr io.Writer) int {
 
 	max := len(data)
 
-	xojoc := newXojocPackage(max)
+	xojoc := newUAPackage(xojocPath, max)
 
 	for _, ua := range data {
 		lgr.Infof("--- %q", ua)
-		v := xojoc.Parse(ua)
+		v := xojocParse(xojoc, ua)
 		lgr.Debugf("%v", v)
 	}
-	lgr.Infof("\n\n%v", xojoc.Result())
+	lgr.Infof("\n\n%v", xojoc.Total())
 
 	return exitOK
 }
