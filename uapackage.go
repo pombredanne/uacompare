@@ -16,6 +16,7 @@ func newUAPackage(path string, max int) *uaPackage {
 	return &pkg
 }
 
+// Total returns results total for package.
 func (pkg *uaPackage) Total() string {
 	percent := float64(pkg.ok) / float64(pkg.max)
 	percent = percent * 100
@@ -27,8 +28,19 @@ func (pkg *uaPackage) Total() string {
 	return r
 }
 
+// Inc increments valid user agent counter.
 func (pkg *uaPackage) Inc() {
 	pkg.ok++
+}
+
+// Result returns formated result output.
+func (pkg *uaPackage) Result(r *uaResult) string {
+	valid := "-"
+	if r.valid {
+		valid = "+"
+	}
+	s := fmt.Sprintf("%s %s: %s\n", valid, pkg.path, r)
+	return s
 }
 
 type uaResult struct {
