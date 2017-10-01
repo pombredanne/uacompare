@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"xojoc.pw/useragent"
+	xojocPkg "xojoc.pw/useragent"
 )
 
 type uaPackage struct {
@@ -41,7 +41,7 @@ func newXojocPackage(max int) xojocPackage {
 }
 
 func (pkg *xojocPackage) Parse(in string) string {
-	ua := useragent.Parse(in)
+	ua := xojocPkg.Parse(in)
 	if ua == nil {
 		return "<nil>"
 	}
