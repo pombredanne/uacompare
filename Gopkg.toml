@@ -5,3 +5,7 @@
 [[constraint]]
   branch = "master"
   name = "xojoc.pw/useragent"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/varstr/uaparser"

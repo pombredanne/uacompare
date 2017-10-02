@@ -15,6 +15,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/varstr/uaparser"
+  packages = ["."]
+  revision = "6aabb7c4e98cc69fcbdebe9b5795ca74249996e7"
+
+[[projects]]
+  branch = "master"
   name = "xojoc.pw/useragent"
   packages = ["."]
   revision = "52903803fc66eef0fce52f158ea57bb3b3feacfe"
@@ -22,6 +28,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "6ea870463f394864bb480f554d41aab995311358becc0feefdd297abfb1d4b00"
+  inputs-digest = "78b199caaa791634bd9b57d011e5537b2f9d677e4a788777a497c516701cc92b"
   solver-name = "gps-cdcl"
   solver-version = 1
