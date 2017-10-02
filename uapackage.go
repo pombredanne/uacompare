@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type uaPackage struct {
 	path string
@@ -62,11 +64,24 @@ func (r *uaResult) Valid() bool {
 			return false
 		}
 	}
+	if r.mobile && r.tablet {
+		return false
+	}
 	return true
 }
 
 func (r *uaResult) String() string {
-	s := fmt.Sprintf("os: %s(%s) br: %s(%s) m:%t t:%t",
-		r.os, r.osVersion, r.browser, r.browserVersion, r.mobile, r.tablet)
+	var device, mobile, tablet string
+	if r.device != "" {
+		device = "d: " + r.device
+	}
+	if r.mobile {
+		mobile = "mobile"
+	}
+	if r.tablet {
+		tablet = "tablet"
+	}
+	s := fmt.Sprintf("os: %s(%s) br: %s(%s) %s %s %s",
+		r.os, r.osVersion, r.browser, r.browserVersion, mobile, tablet, device)
 	return s
 }
