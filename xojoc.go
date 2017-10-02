@@ -4,7 +4,7 @@ import (
 	xojocPkg "xojoc.pw/useragent"
 )
 
-const xojocPath = "xojoc.pw/useragent"
+const xojocName = "xojoc"
 
 func xojocParse(pkg *uaPackage, in string) *uaResult {
 	ua := xojocPkg.Parse(in)
@@ -12,7 +12,6 @@ func xojocParse(pkg *uaPackage, in string) *uaResult {
 		return &uaResult{}
 	}
 	r := uaResult{
-		valid:          true,
 		os:             ua.OS,
 		osVersion:      ua.OSVersion.String(),
 		browser:        ua.Name,
@@ -20,6 +19,8 @@ func xojocParse(pkg *uaPackage, in string) *uaResult {
 		mobile:         ua.Mobile,
 		tablet:         ua.Tablet,
 	}
-	pkg.Inc()
+	if r.Valid() {
+		pkg.Inc()
+	}
 	return &r
 }
