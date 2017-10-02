@@ -14,9 +14,8 @@ func main() {
 }
 
 const (
-	exitOK   = 0
-	exitErr  = 1
-	exitUser = 2
+	exitOK  = 0
+	exitErr = 1
 )
 
 func run(path string, verbose bool, stdout, stderr io.Writer) int {
