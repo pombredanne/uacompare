@@ -34,6 +34,7 @@ func run(path string, verbose bool, stdout, stderr io.Writer) int {
 	xojoc := newUAPackage(xojocName, max)
 	mileusna := newUAPackage(mileusnaName, max)
 	varstr := newUAPackage(varstrName, max)
+	avocet := newUAPackage(avocetName, max)
 
 	for _, ua := range data {
 		lgr.Debugf("\n%s", ua)
@@ -43,10 +44,13 @@ func run(path string, verbose bool, stdout, stderr io.Writer) int {
 		lgr.Debugf("%s", mileusna.Result(r))
 		r = varstrParse(varstr, ua)
 		lgr.Debugf("%s", varstr.Result(r))
+		r = avocetParse(avocet, ua)
+		lgr.Debugf("%s", avocet.Result(r))
 	}
 	lgr.Infof("\n\n%v", xojoc.Total())
 	lgr.Infof("%v", mileusna.Total())
 	lgr.Infof("%v", varstr.Total())
+	lgr.Infof("%v", avocet.Total())
 
 	return exitOK
 }
