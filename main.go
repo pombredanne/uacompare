@@ -38,18 +38,19 @@ func run(path string, verbose bool, stdout, stderr io.Writer) int {
 
 	for _, ua := range data {
 		lgr.Debugf("\n%s", ua)
-		r := xojocParse(xojoc, ua)
-		lgr.Debugf("%s", xojoc.Result(r))
-		r = mileusnaParse(mileusna, ua)
-		lgr.Debugf("%s", mileusna.Result(r))
-		r = varstrParse(varstr, ua)
-		lgr.Debugf("%s", varstr.Result(r))
-		r = avocetParse(avocet, ua)
-		lgr.Debugf("%s", avocet.Result(r))
+		showUserAgent(lgr, avocet, ua, avocetParse)
+		showUserAgent(lgr, mileusna, ua, mileusnaParse)
+		showUserAgent(lgr, varstr, ua, varstrParse)
+		showUserAgent(lgr, xojoc, ua, xojocParse)
 	}
 	showTotals(lgr, avocet, mileusna, varstr, xojoc)
 
 	return exitOK
+}
+
+func showUserAgent(lgr *Logger, pkg *uaPackage, ua string, fn func(*uaPackage, string) *uaResult) {
+	r := fn(pkg, ua)
+	lgr.Debugf("%s", pkg.Result(r))
 }
 
 func showTotals(lgr *Logger, pkgs ...*uaPackage) {
