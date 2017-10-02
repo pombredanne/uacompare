@@ -38,7 +38,7 @@ func (pkg *uaPackage) Inc() {
 // Result returns formated result output.
 func (pkg *uaPackage) Result(r *uaResult) string {
 	valid := "-"
-	if r.valid {
+	if r.Valid() {
 		valid = "+"
 	}
 	s := fmt.Sprintf("%s %s: %s\n", valid, pkg.name, r)
@@ -46,7 +46,6 @@ func (pkg *uaPackage) Result(r *uaResult) string {
 }
 
 type uaResult struct {
-	valid          bool
 	os             string
 	osVersion      string
 	browser        string
