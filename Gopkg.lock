@@ -9,6 +9,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/mileusna/useragent"
+  packages = ["."]
+  revision = "afff2b0e4a00488ed24a79de5edc5024845ba88b"
+
+[[projects]]
+  branch = "master"
   name = "xojoc.pw/useragent"
   packages = ["."]
   revision = "52903803fc66eef0fce52f158ea57bb3b3feacfe"
@@ -16,6 +22,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "f41d8d71408c114f9ef822725efa2b42f068304459254b052b6726b4694645a6"
+  inputs-digest = "6ea870463f394864bb480f554d41aab995311358becc0feefdd297abfb1d4b00"
   solver-name = "gps-cdcl"
   solver-version = 1
