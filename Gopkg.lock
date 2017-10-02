@@ -2,6 +2,12 @@
 
 
 [[projects]]
+  branch = "master"
+  name = "github.com/avct/uasurfer"
+  packages = ["."]
+  revision = "58547b533a5426ab563215f47cd1dbcb4300beb7"
+
+[[projects]]
   name = "github.com/blang/semver"
   packages = ["."]
   revision = "2ee87856327ba09384cabd113bc6b5d174e9ec0f"
@@ -28,6 +34,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "17a0db5dbe2295154b06be2fbc7e0e7026d123c2ad419e76561e0db02c619bd3"
+  inputs-digest = "7fe9197e0fa0c9f041a186ff3c08b19214ef480e47fc0061c97389ef45e4493a"
   solver-name = "gps-cdcl"
   solver-version = 1

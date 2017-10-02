@@ -1,11 +1,16 @@
 [[constraint]]
   branch = "master"
+  name = "github.com/avct/uasurfer"
+
+[[constraint]]
+  branch = "master"
   name = "github.com/mileusna/useragent"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/varstr/uaparser"
 
 [[constraint]]
   branch = "master"
   name = "xojoc.pw/useragent"
 
-[[constraint]]
-  branch = "master"
-  name = "github.com/varstr/uaparser"
