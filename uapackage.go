@@ -49,8 +49,20 @@ type uaResult struct {
 	osVersion      string
 	browser        string
 	browserVersion string
+	device         string
 	mobile         bool
 	tablet         bool
+}
+
+// Valid validates result's fields.
+func (r *uaResult) Valid() bool {
+	fields := []string{r.os, r.osVersion, r.browser, r.browserVersion}
+	for _, f := range fields {
+		if f == "" {
+			return false
+		}
+	}
+	return true
 }
 
 func (r *uaResult) String() string {
