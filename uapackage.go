@@ -5,14 +5,14 @@ import (
 )
 
 type uaPackage struct {
-	path string
+	name string
 	ok   int
 	max  int
 }
 
-func newUAPackage(path string, max int) *uaPackage {
+func newUAPackage(name string, max int) *uaPackage {
 	pkg := uaPackage{
-		path: path,
+		name: name,
 		max:  max,
 	}
 	return &pkg
@@ -22,8 +22,8 @@ func newUAPackage(path string, max int) *uaPackage {
 func (pkg *uaPackage) Total() string {
 	percent := float64(pkg.ok) / float64(pkg.max)
 	percent = percent * 100
-	r := fmt.Sprintf("%q: %d / %d = %3.2f%%",
-		pkg.path,
+	r := fmt.Sprintf("%s: %d / %d = %3.2f%%",
+		pkg.name,
 		pkg.ok,
 		pkg.max,
 		percent)
@@ -41,7 +41,7 @@ func (pkg *uaPackage) Result(r *uaResult) string {
 	if r.valid {
 		valid = "+"
 	}
-	s := fmt.Sprintf("%s %s: %s\n", valid, pkg.path, r)
+	s := fmt.Sprintf("%s %s: %s\n", valid, pkg.name, r)
 	return s
 }
 
