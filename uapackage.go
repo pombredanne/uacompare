@@ -22,7 +22,7 @@ func newUAPackage(name string, max int) *uaPackage {
 func (pkg *uaPackage) Total() string {
 	percent := float64(pkg.ok) / float64(pkg.max)
 	percent = percent * 100
-	r := fmt.Sprintf("%s: %d / %d = %3.2f%%",
+	r := fmt.Sprintf("%-10s: %6d / %6d = %8.2f%%",
 		pkg.name,
 		pkg.ok,
 		pkg.max,
