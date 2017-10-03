@@ -1,2 +1,2 @@
-testdata/all.txt
-testdata/unparsable.txt
+testdata/*
+!testdata/testdata.txt
