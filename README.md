@@ -15,6 +15,15 @@ uacompare compares Go packages for user agents parsing.
 $ go get -u github.com/dvrkps/uacompare
 ```
 
+## Compared packages
+
+| Package                               | Licence    |    %   |
+|---------------------------------------|------------|--------|
+| https://github.com/avct/uasurfer      | Apache-2.0 | 100.00 |
+| https://github.com/mileusna/useragent | MIT        |  96.59 |
+| https://github.com/varstr/uaparser    | CCO        |  73.03 |
+| https://github.com/xojoc/useragent    | GPL-3.0    |  85.74 |
+
 ## License
 
 The MIT License (MIT) - see [LICENSE](LICENSE) for more details.
