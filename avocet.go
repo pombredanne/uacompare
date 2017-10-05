@@ -10,6 +10,13 @@ import (
 const avocetName = "avocet"
 
 func avocetParse(pkg *uaPackage, in string) *uaResult {
+	fixUnknown := func(in string) string {
+		if in == "Unknown" || in == "0.0.0" {
+			return ""
+		}
+		return in
+	}
+
 	ua := avocetPkg.Parse(in)
 	if ua == nil {
 		return &uaResult{}
@@ -29,6 +36,11 @@ func avocetParse(pkg *uaPackage, in string) *uaResult {
 	if ua.DeviceType == avocetPkg.DeviceTablet {
 		tablet = true
 	}
+
+	osName = fixUnknown(osName)
+	osVersion = fixUnknown(osVersion)
+	browserName = fixUnknown(browserName)
+	browserVersion = fixUnknown(browserVersion)
 
 	r := uaResult{
 		os:             osName,

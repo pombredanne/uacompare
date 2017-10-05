@@ -7,15 +7,29 @@ import (
 const xojocName = "xojoc"
 
 func xojocParse(pkg *uaPackage, in string) *uaResult {
+
+	fixUnknown := func(in string) string {
+		if in == "unknown" || in == "0.0.0" {
+			return ""
+		}
+		return in
+	}
+
 	ua := xojocPkg.Parse(in)
 	if ua == nil {
 		return &uaResult{}
 	}
+
+	osName := fixUnknown(ua.OS)
+	osVersion := fixUnknown(ua.OSVersion.String())
+	browserName := fixUnknown(ua.Name)
+	browserVersion := fixUnknown(ua.Version.String())
+
 	r := uaResult{
-		os:             ua.OS,
-		osVersion:      ua.OSVersion.String(),
-		browser:        ua.Name,
-		browserVersion: ua.Version.String(),
+		os:             osName,
+		osVersion:      osVersion,
+		browser:        browserName,
+		browserVersion: browserVersion,
 		mobile:         ua.Mobile,
 		tablet:         ua.Tablet,
 	}
@@ -23,4 +37,5 @@ func xojocParse(pkg *uaPackage, in string) *uaResult {
 		pkg.Inc()
 	}
 	return &r
+
 }
