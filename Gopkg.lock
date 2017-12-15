@@ -5,7 +5,7 @@
   branch = "master"
   name = "github.com/avct/uasurfer"
   packages = ["."]
-  revision = "58547b533a5426ab563215f47cd1dbcb4300beb7"
+  revision = "7b6f7205267b5b81d20da3f09ec3dea3b3d90cf8"
 
 [[projects]]
   name = "github.com/blang/semver"
