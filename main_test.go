@@ -1,15 +1,15 @@
 package main
 
 import (
-	"os"
+	"io/ioutil"
 	"testing"
 )
 
 func TestRun(t *testing.T) {
 	var (
 		debug  = true
-		stdout = os.Stdout // &bytes.Buffer{}
-		stderr = os.Stderr // &bytes.Buffer{}
+		stdout = ioutil.Discard // os.Stdout // &bytes.Buffer{}
+		stderr = ioutil.Discard // os.Stderr      // &bytes.Buffer{}
 	)
 
 	if got := run(testDataPath, debug, stdout, stderr); got != exitOK {
