@@ -21,8 +21,7 @@ const (
 func run(path string, verbose bool, stdout, stderr io.Writer) int {
 	lgr := newLogger(verbose, stdout, stderr)
 
-	var data Data
-	err := loadData(lgr, path, &data)
+	data, err := loadData(lgr, path)
 	if err != nil {
 		lgr.Errorf("load raw data: %v", err)
 		return exitErr
