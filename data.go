@@ -16,11 +16,7 @@ func loadData(lgr *Logger, path string, d *Data) error {
 		return err
 	}
 
-	defer func() {
-		if err = r.Close(); err != nil {
-			lgr.Errorf("load raw data close: %v", err)
-		}
-	}()
+	defer closeFile(r.Close, lgr, "low raw data close")
 
 	s := bufio.NewScanner(r)
 
@@ -36,6 +32,13 @@ func loadData(lgr *Logger, path string, d *Data) error {
 		return fmt.Errorf("scan: %v", s.Err())
 	}
 	return nil
+}
+
+func closeFile(fn func() error, lgr *Logger, msg string) {
+	err := fn()
+	if err != nil {
+		lgr.Errorf("%s%v", msg, err)
+	}
 }
 
 func fixUnknown(in string) string {
