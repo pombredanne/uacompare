@@ -12,26 +12,11 @@ func varstrParse(pkg *uaPackage, in string) *uaResult {
 		return &uaResult{}
 	}
 
-	var osName, osVersion string
-	if ua.OS != nil {
-		osName = ua.OS.Name
-		osVersion = ua.OS.Version
-	}
-	var browserName, browserVersion string
-	if ua.Browser != nil {
-		browserName = ua.Browser.Name
-		browserVersion = ua.Browser.Version
-	}
+	osName, osVersion := varstrNameVersion(ua.OS)
+	browserName, browserVersion := varstrNameVersion(ua.Browser)
 
-	var mobile, tablet bool
-	if ua.DeviceType != nil {
-		switch ua.DeviceType.Name {
-		case "Phone":
-			mobile = true
-		case "Tablet":
-			tablet = true
-		}
-	}
+	mobile, tablet := varstrDeviceType(ua)
+
 	r := uaResult{
 		os:             osName,
 		osVersion:      osVersion,
@@ -44,4 +29,26 @@ func varstrParse(pkg *uaPackage, in string) *uaResult {
 		pkg.Inc()
 	}
 	return &r
+}
+
+func varstrNameVersion(ii *varstrPkg.InfoItem) (string, string) {
+	var n, v string
+	if ii != nil {
+		n = ii.Name
+		v = ii.Version
+	}
+	return n, v
+}
+
+func varstrDeviceType(ua *varstrPkg.UAInfo) (bool, bool) {
+	var m, t bool
+	if ua.DeviceType != nil {
+		switch ua.DeviceType.Name {
+		case "Phone":
+			m = true
+		case "Tablet":
+			t = true
+		}
+	}
+	return m, t
 }
