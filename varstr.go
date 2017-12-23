@@ -41,14 +41,14 @@ func varstrNameVersion(ii *varstrPkg.InfoItem) (string, string) {
 }
 
 func varstrDeviceType(ua *varstrPkg.UAInfo) (bool, bool) {
-	var m, t bool
+	var mobile, tablet bool
 	if ua.DeviceType != nil {
 		switch ua.DeviceType.Name {
 		case "Phone":
-			m = true
+			mobile = true
 		case "Tablet":
-			t = true
+			tablet = true
 		}
 	}
-	return m, t
+	return mobile, tablet
 }
