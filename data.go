@@ -37,3 +37,10 @@ func loadData(lgr *Logger, path string, d *Data) error {
 	}
 	return nil
 }
+
+func fixUnknown(in string) string {
+	if in == "Unknown" || in == "0.0.0" {
+		return ""
+	}
+	return in
+}

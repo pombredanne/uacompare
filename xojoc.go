@@ -7,14 +7,6 @@ import (
 const xojocName = "xojoc"
 
 func xojocParse(pkg *uaPackage, in string) *uaResult {
-
-	fixUnknown := func(in string) string {
-		if in == "unknown" || in == "0.0.0" {
-			return ""
-		}
-		return in
-	}
-
 	ua := xojocPkg.Parse(in)
 	if ua == nil {
 		return &uaResult{}

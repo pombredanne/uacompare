@@ -10,13 +10,6 @@ import (
 const avocetName = "avocet"
 
 func avocetParse(pkg *uaPackage, in string) *uaResult {
-	fixUnknown := func(in string) string {
-		if in == "Unknown" || in == "0.0.0" {
-			return ""
-		}
-		return in
-	}
-
 	ua := avocetPkg.Parse(in)
 	if ua == nil {
 		return &uaResult{}
