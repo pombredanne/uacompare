@@ -14,21 +14,10 @@ func avocetParse(pkg *uaPackage, in string) *uaResult {
 	if ua == nil {
 		return &uaResult{}
 	}
-	osName := ua.OS.Name.String()
-	osName = strings.TrimPrefix(osName, "OS")
-	osv := ua.OS.Version
-	osVersion := fmt.Sprintf("%d.%d.%d", osv.Major, osv.Minor, osv.Patch)
-	browserName := ua.Browser.Name.String()
-	browserName = strings.TrimPrefix(browserName, "Browser")
-	bv := ua.Browser.Version
-	browserVersion := fmt.Sprintf("%d.%d.%d", bv.Major, bv.Minor, bv.Patch)
-	var mobile, tablet bool
-	if ua.DeviceType == avocetPkg.DevicePhone {
-		mobile = true
-	}
-	if ua.DeviceType == avocetPkg.DeviceTablet {
-		tablet = true
-	}
+
+	osName, osVersion := avocetNameVersion(ua.OS.Name.String(), ua.OS.Version)
+	browserName, browserVersion := avocetNameVersion(ua.Browser.Name.String(), ua.Browser.Version)
+	mobile, tablet := avocetDeviceType(ua)
 
 	osName = fixUnknown(osName)
 	osVersion = fixUnknown(osVersion)
@@ -48,4 +37,34 @@ func avocetParse(pkg *uaPackage, in string) *uaResult {
 		pkg.Inc()
 	}
 	return &r
+}
+
+func avocetNameVersion(rawName string, rawVersion avocetPkg.Version) (string, string) {
+	const (
+		osPrefix      = "OS"
+		browserPrefix = "Browser"
+	)
+
+	var name string
+	if strings.HasPrefix(rawName, osPrefix) {
+		name = strings.TrimPrefix(rawName, osPrefix)
+	}
+	if strings.HasPrefix(rawName, browserPrefix) {
+		name = strings.TrimPrefix(rawName, browserPrefix)
+	}
+
+	version := fmt.Sprintf("%d.%d.%d", rawVersion.Major, rawVersion.Minor, rawVersion.Patch)
+
+	return name, version
+}
+
+func avocetDeviceType(ua *avocetPkg.UserAgent) (bool, bool) {
+	var mobile, tablet bool
+	if ua.DeviceType == avocetPkg.DevicePhone {
+		mobile = true
+	}
+	if ua.DeviceType == avocetPkg.DeviceTablet {
+		tablet = true
+	}
+	return mobile, tablet
 }
