@@ -9,29 +9,32 @@ import (
 // Data holds all user agents.
 type Data []string
 
-func loadData(lgr *Logger, path string, d *Data) error {
+func loadData(lgr *Logger, path string) (Data, error) {
 
 	r, err := os.Open(path)
 	if err != nil {
-		return err
+		return Data{}, err
 	}
 
 	defer closeFile(r.Close, lgr, "low raw data close")
 
 	s := bufio.NewScanner(r)
 
-	var t string
+	var (
+		d Data
+		t string
+	)
 	for s.Scan() {
 		t = s.Text()
 		if t == "" {
 			continue
 		}
-		*d = append(*d, t)
+		d = append(d, t)
 	}
 	if err = s.Err(); err != nil {
-		return fmt.Errorf("scan: %v", s.Err())
+		return Data{}, fmt.Errorf("scan: %v", s.Err())
 	}
-	return nil
+	return d, nil
 }
 
 func closeFile(fn func() error, lgr *Logger, msg string) {
