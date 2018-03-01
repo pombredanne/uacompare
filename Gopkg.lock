@@ -17,7 +17,7 @@
   branch = "master"
   name = "github.com/mileusna/useragent"
   packages = ["."]
-  revision = "afff2b0e4a00488ed24a79de5edc5024845ba88b"
+  revision = "a77e51dd1c9722efd7ded0ce7d44a22cc277e074"
 
 [[projects]]
   branch = "master"
