@@ -1,0 +1,10 @@
+github.com/avct/uasurfer v0.0.0-20180301140507-c4be5581ec96 h1:g5wP1rR4/k8vinUBRXAHlFD3IdcsYdzD90hhBTKFTgY=
+github.com/avct/uasurfer v0.0.0-20180301140507-c4be5581ec96/go.mod h1:noBAuukeYOXa0aXGqxr24tADqkwDO2KRD15FsuaZ5a8=
+github.com/blang/semver v3.5.1+incompatible h1:cQNTCjp13qL8KC3Nbxr/y2Bqb63oX6wdnnjpJbkM4JQ=
+github.com/blang/semver v3.5.1+incompatible/go.mod h1:kRBLl5iJ+tD4TcOOxsy/0fnwebNt5EWlYSAyrTnjyyk=
+github.com/mileusna/useragent v0.0.0-20180127212926-a77e51dd1c97 h1:p/PnpFJWFh52c1+nWOQsyDDNx3U3HbMTxK6vTXKL7Cw=
+github.com/mileusna/useragent v0.0.0-20180127212926-a77e51dd1c97/go.mod h1:JWhYAp2EXqUtsxTKdeGlY8Wp44M7VxThC9FEoNGi2IE=
+github.com/varstr/uaparser v0.0.0-20170929040706-6aabb7c4e98c h1:784GLmmj3iqWZeOY7efptvOuRYaJTvBoV8+uoq/xixM=
+github.com/varstr/uaparser v0.0.0-20170929040706-6aabb7c4e98c/go.mod h1:9wVl9Rgdg833kk+jjlKxQpR/sSHYpoINxJBFufqj/Cw=
+xojoc.pw/useragent v0.0.0-20170215185434-52903803fc66 h1:j5PlwzvW29USBoG/MvJPT5kDvX+0+lVLlOdnujOlN94=
+xojoc.pw/useragent v0.0.0-20170215185434-52903803fc66/go.mod h1:71om/Qz9HbIEjbUrkrzmJiF26FSh6tcwqSFdBBkLtJQ=
