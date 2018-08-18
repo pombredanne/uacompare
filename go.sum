@@ -1,5 +1,7 @@
 github.com/avct/uasurfer v0.0.0-20180301140507-c4be5581ec96 h1:g5wP1rR4/k8vinUBRXAHlFD3IdcsYdzD90hhBTKFTgY=
 github.com/avct/uasurfer v0.0.0-20180301140507-c4be5581ec96/go.mod h1:noBAuukeYOXa0aXGqxr24tADqkwDO2KRD15FsuaZ5a8=
+github.com/avct/uasurfer v0.0.0-20180817072212-dc0ec4fd1e87 h1:TUuuMI5Sxsw5IVVu3LR4ByWxCAJ/Yb8vvJLZyr9KS0s=
+github.com/avct/uasurfer v0.0.0-20180817072212-dc0ec4fd1e87/go.mod h1:noBAuukeYOXa0aXGqxr24tADqkwDO2KRD15FsuaZ5a8=
 github.com/blang/semver v3.5.1+incompatible h1:cQNTCjp13qL8KC3Nbxr/y2Bqb63oX6wdnnjpJbkM4JQ=
 github.com/blang/semver v3.5.1+incompatible/go.mod h1:kRBLl5iJ+tD4TcOOxsy/0fnwebNt5EWlYSAyrTnjyyk=
 github.com/mileusna/useragent v0.0.0-20180127212926-a77e51dd1c97 h1:p/PnpFJWFh52c1+nWOQsyDDNx3U3HbMTxK6vTXKL7Cw=
